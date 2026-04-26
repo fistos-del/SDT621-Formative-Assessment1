@@ -50,7 +50,7 @@
             // lblInstruction
             // 
             lblInstruction.AutoSize = true;
-            lblInstruction.Location = new Point(155, 9);
+            lblInstruction.Location = new Point(12, 67);
             lblInstruction.Name = "lblInstruction";
             lblInstruction.Size = new Size(210, 20);
             lblInstruction.TabIndex = 1;
@@ -58,14 +58,14 @@
             // 
             // txtLanguage
             // 
-            txtLanguage.Location = new Point(155, 32);
+            txtLanguage.Location = new Point(12, 111);
             txtLanguage.Name = "txtLanguage";
             txtLanguage.Size = new Size(125, 27);
             txtLanguage.TabIndex = 2;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(155, 138);
+            btnAdd.Location = new Point(12, 165);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 3;
@@ -74,7 +74,7 @@
             // 
             // btnRemove
             // 
-            btnRemove.Location = new Point(255, 138);
+            btnRemove.Location = new Point(112, 165);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(94, 29);
             btnRemove.TabIndex = 4;
@@ -92,7 +92,7 @@
             // lblDateTime
             // 
             lblDateTime.AutoSize = true;
-            lblDateTime.Location = new Point(199, 230);
+            lblDateTime.Location = new Point(666, 421);
             lblDateTime.Name = "lblDateTime";
             lblDateTime.Size = new Size(50, 20);
             lblDateTime.TabIndex = 6;
@@ -102,7 +102,7 @@
             // 
             lblMessage.AccessibleName = "lblMessage";
             lblMessage.AutoSize = true;
-            lblMessage.Location = new Point(255, 230);
+            lblMessage.Location = new Point(771, 421);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(50, 20);
             lblMessage.TabIndex = 7;
@@ -112,7 +112,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(833, 450);
             Controls.Add(lblMessage);
             Controls.Add(lblDateTime);
             Controls.Add(lstLanguages);
@@ -123,6 +123,7 @@
             Controls.Add(lblTitle);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
