@@ -26,6 +26,10 @@ namespace EmfuleniMunicipality
             Isprocessed = false;
         }
 
-
-    }
+        // Method to get equest details
+        public string GetRequestDetails()
+        {
+            return $"Request Type: {RequestType}, Priority Level: {PriorityLevel}, Severity Level: {SeverityLevel}, Estimated Resolution Hours: {EstimatedResolutinHours}, Urgency Score: {UrgencyScore}, Is Processed: {Isprocessed}";
+        }
+}
 }
