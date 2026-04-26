@@ -54,6 +54,20 @@ namespace StudentMarks
         double averageMarks = totalMarks / 3.0;
 
         // Step 7: Determine PASS or FAIL
+        string result = (averageMarks >= 50) ? "PASS" : "FAIL";
 
-    }
+        // Step 8: Display results
+        Console.WriteLine("====================================");
+        Console.WriteLine("           STUDENT RESULT           ");
+        Console.WriteLine("====================================");
+        Console.WriteLine($"Student Name: {studentName}");
+        Console.WriteLine($"Mark 1: {marks1}");
+        Console.WriteLine($"Mark 2: {marks2}");
+        Console.WriteLine($"Mark 3: {marks3}");
+        Console.WriteLine("====================================");
+        Console.WriteLine($"Total Marks: {totalMarks}");
+        Console.WriteLine($"Average Marks: {averageMarks:F2}%");
+        Console.WriteLine($"Result: {result}");
+        Console.WriteLine("====================================");
+
 { }
