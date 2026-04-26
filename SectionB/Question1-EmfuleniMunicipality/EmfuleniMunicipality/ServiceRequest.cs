@@ -14,6 +14,18 @@ namespace EmfuleniMunicipality
         public double UrgencyScore { get; set; }
         public bool Isprocessed { get; set; }
 
-        
+        // Constructor
+        public ServiceRequest(string requestType, int priority, int severity, double resolutionHours, Resident resident)
+        {
+            RequestType = requestType;
+            PriorityLevel = priority;
+            SeverityLevel = severity;
+            EstimatedResolutinHours = resolutionHours;
+            AssociatedResident = resident;
+            UrgencyScore = 0;
+            Isprocessed = false;
+        }
+
+
     }
 }
