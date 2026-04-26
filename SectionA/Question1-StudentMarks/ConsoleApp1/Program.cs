@@ -76,4 +76,4 @@ namespace StudentMarks
         Console.ReadKey();
       }
    }
-}
+} 
