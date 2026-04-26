@@ -7,11 +7,11 @@ namespace StudentMarks
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the number of students:");
+            Console.WriteLine("===================================");
             Console.WriteLine("       STUDENT MARK CALCULATOR      ");
-            Console.WriteLine("====================================");
+            Console.WriteLine("===================================\n");
 
-            // Step 1: Gte student name
+            // Step 1: Get student name
             Console.WriteLine("Enter the name of the student: ");
             string studentName = Console.ReadLine();
 
@@ -25,10 +25,10 @@ namespace StudentMarks
         {
             Console.WriteLine("Enter marks for subject 1: ");
             input = Console.ReadLine();
-            isvalid = int.TryParse(input, out marks1);
+                isvalid = int.TryParse(input, out marks1);
             if (!isvalid)
                 Console.WriteLine("Invalid input. Please enter a number between 0 and 100.");
-            }
+            
         } while (!isvalid);
 
         // Step 4: Gte variables Mark 2
