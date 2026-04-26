@@ -1,4 +1,4 @@
-﻿using Systme;
+﻿using System;
 using static System.TimeZoneInfo;
 
 namespace ATMApplication
@@ -13,10 +13,10 @@ namespace ATMApplication
             Console.WriteLine("Welcome to the ATM Application!");
             while (true)
             {
-                Console.WriteLine("" =================================== ");
-                Console.WriteLine(""           SIMPLE ATM              ");
                 Console.WriteLine("===================================");
-                Console.WriteLine("Current Balance: R{balance:F2}");
+                Console.WriteLine("           SIMPLE ATM              ");
+                Console.WriteLine("===================================");
+                Console.WriteLine($"Current Balance: R{balance:F2}");
                 Console.WriteLine("===================================\n");
 
                 // Step1: Get withdrawal amount
@@ -50,7 +50,7 @@ namespace ATMApplication
                     Console.WriteLine("\n===================================");
                     Console.WriteLine("        TRANSACTION RECEIPT        ");
                     Console.WriteLine("===================================");
-                    Console.WriteLine($"Date/Time:       {transactionTime:dd/MM/yyyy HH:MM:SS}");
+                    Console.WriteLine($"Date/Time:       {transaction:dd/MM/yyyy HH:mm:ss}");
                     Console.WriteLine($"Previous Balance: R{previousBalance:F2}");
                     Console.WriteLine($"Amount Withdrawn:  R{withdrawalAmount:F2}");
                     Console.WriteLine($"New Balance:      R{balance:F2}");
@@ -59,11 +59,12 @@ namespace ATMApplication
                     Console.WriteLine("===================================");
                 }
 
-                Console.Writline("\n"Press any Key to exit...");
+                Console.WriteLine("\nPress any key to exit...");
                 Console.ReadKey();
             }
         }
     }
+}
 
 
 
