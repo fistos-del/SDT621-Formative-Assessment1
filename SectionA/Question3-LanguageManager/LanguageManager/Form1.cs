@@ -26,7 +26,51 @@ namespace LanguageManager
                 lblMessage.ForeColor = System.Drawing.Color.Red; return;
             }
 
+            // Validattion 2: Prevent duplicate entries
+            foreach (var item in lstLanguages.Items)
+            {
+                if (item.ToString().Equals(newlanguage, StringComparison.OrdinalIgnoreCase))
+                {
+                    lblMessage.Text = "❌ Error: Language already exists!";
+                    lblMessage.ForeColor = System.Drawing.Color.Red; return;
+                }
+            }
 
+            //Add language to the listBox
+            lstLanguages.Items.Add(newlanguage);
+
+            // Display current date and time
+            lblDateTime.Text = $"Added on: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
+
+            // Show the textbox for the next entry
+            txtLanguage.Clear();
+            txtLanguage.Focus();
+        }
+
+        // Remove Language Button Click Event
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (lstLanguages.SelectedItem != -1)
+            {
+                lblMessage.Text = "❌ Error: Please select a language to remove!";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                return;
+
+            }
+
+            // Get the selected language
+            string removedlanguage = lstLanguages.SelectedItem.ToString();
+
+            // Remove it from the list
+            lstLanguages.Items.RemoveAt(lstLanguages.SelectedIndex);
+
+            // Display current date and time
+            lblDateTime.Text = $"Removed on: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
+
+            // Show success message
+            lblMessage.Text = $"✅ Success: '{removedlanguage}' has been removed!";
+
+            lblMessage.ForeColor = System.Drawing.Color.Green;
         }
     }
 }
