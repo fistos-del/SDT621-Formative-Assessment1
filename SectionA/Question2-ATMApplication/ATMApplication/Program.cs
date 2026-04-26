@@ -18,4 +18,10 @@ namespace ATMApplication
                 Console.WriteLine("Current Balance: R{balance:F2}");
                 Console.WriteLine("===================================\n");
 
+                // Step1: Get withdrawal amount
+                Console.Write("Enter the amount to withdraw: R");
+                string input = Console.ReadLine();
+                decimal withdrawalAmount;
+
+                
 
