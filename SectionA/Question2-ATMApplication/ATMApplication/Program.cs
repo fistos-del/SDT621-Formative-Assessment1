@@ -40,6 +40,11 @@ namespace ATMApplication
                 }
                 else
                 {
+                   // Step4: Process the withdrawal
+                   decimal previousBalance = balance;
+                     balance -= withdrawalAmount;
+                    DateTime transaction = DateTime.Now;
+
 
 
 
