@@ -86,13 +86,13 @@
             lstLanguages.FormattingEnabled = true;
             lstLanguages.Location = new Point(12, 217);
             lstLanguages.Name = "lstLanguages";
-            lstLanguages.Size = new Size(150, 104);
+            lstLanguages.Size = new Size(210, 204);
             lstLanguages.TabIndex = 5;
             // 
             // lblDateTime
             // 
             lblDateTime.AutoSize = true;
-            lblDateTime.Location = new Point(666, 421);
+            lblDateTime.Location = new Point(532, 421);
             lblDateTime.Name = "lblDateTime";
             lblDateTime.Size = new Size(50, 20);
             lblDateTime.TabIndex = 6;
@@ -102,7 +102,7 @@
             // 
             lblMessage.AccessibleName = "lblMessage";
             lblMessage.AutoSize = true;
-            lblMessage.Location = new Point(771, 421);
+            lblMessage.Location = new Point(729, 421);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(50, 20);
             lblMessage.TabIndex = 7;

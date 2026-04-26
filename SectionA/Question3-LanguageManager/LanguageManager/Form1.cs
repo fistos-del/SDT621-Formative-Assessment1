@@ -50,7 +50,7 @@ namespace LanguageManager
         // Remove Language Button Click Event
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (lstLanguages.SelectedItem != -1)
+            if (lstLanguages.SelectedIndex == -1)
             {
                 lblMessage.Text = "❌ Error: Please select a language to remove!";
                 lblMessage.ForeColor = System.Drawing.Color.Red;
