@@ -11,7 +11,17 @@ namespace EmfuleniMunicipality
         public string AccountNumer { get; set; }
         public Double MonthlyUtilityUsage { get; set; }
 
-        
+        // Constructor
+        public Resident(string name, string address, string accountNumber, double monthlyUtilityUsage)
+        {
+            Name = name;
+            Address = address;
+            AccountNumer = accountNumber;
+            MonthlyUtilityUsage = monthlyUtilityUsage;
+        }
 
-        
+
+
+
+
 
