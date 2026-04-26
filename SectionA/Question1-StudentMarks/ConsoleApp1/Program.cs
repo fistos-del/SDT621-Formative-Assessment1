@@ -1,13 +1,15 @@
 ﻿using System;
 
 namespace StudentMarks
+{ 
  class Program
+
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Enter the number of students:");
             Console.WriteLine("       STUDENT MARK CALCULATOR      ");
-            Console.Wrteline("====================================");
+            Console.WriteLine("====================================");
 
             // Step 1: Gte student name
             Console.WriteLine("Enter the name of the student: ");
