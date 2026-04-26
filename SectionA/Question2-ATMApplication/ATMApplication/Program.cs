@@ -30,7 +30,16 @@ namespace ATMApplication
                     input = Console.ReadLine();
                 }
 
-
+                // Step3: Check if the balance is sufficient
+                if (withdrawalAmount > balance)
+                {
+                    Console.WriteLine("\n===================================");
+                    Console.WriteLine("       INSUFFICIENT FUNDS!         ");
+                    Console.WriteLine($"Your balance is only: R{balance:F2}");
+                    Console.WriteLine("===================================");
+                }
+                else
+                {
 
 
 
