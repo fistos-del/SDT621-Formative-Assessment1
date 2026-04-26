@@ -47,7 +47,13 @@ namespace StudentMarks
             isvalid = int.TryParse(input, out marks3);
             if (!isvalid)
                 Console.WriteLine("Invalid input. Please enter a number between 0 and 100.");
-        } while (!isvalid);
+        } while (!isvalid) ;
+
+        // Step 6: Calculate total marks
+        int totalMarks = marks1 + marks2 + marks3;
+        double averageMarks = totalMarks / 3.0;
+
+        // Step 7: Determine PASS or FAIL
 
     }
 { }
