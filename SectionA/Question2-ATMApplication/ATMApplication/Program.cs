@@ -23,5 +23,14 @@ namespace ATMApplication
                 string input = Console.ReadLine();
                 decimal withdrawalAmount;
 
-                
+                // Step2: Validate the input
+                while (!decimal.TryParse(input, out withdrawalAmount) || withdrawalAmount <= 0)
+                {
+                    Console.Write("Invalid input. Please enter a valid amount to withdraw: R");
+                    input = Console.ReadLine();
+                }
+
+
+
+
 
