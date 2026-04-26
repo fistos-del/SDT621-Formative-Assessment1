@@ -20,7 +20,13 @@ namespace EmfuleniMunicipality
             MonthlyUtilityUsage = monthlyUtilityUsage;
         }
 
-
+        // Method to get resident details as a formatted string
+        public string GetResidentDetails()
+        {
+            return $"Name: {Name}, Address: {Address}, Account Number: {AccountNumer}, Monthly Utility Usage: {MonthlyUtilityUsage} kWh";
+        }
+    }
+}
 
 
 
