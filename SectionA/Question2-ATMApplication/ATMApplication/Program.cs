@@ -1,4 +1,5 @@
 ﻿using Systme;
+using static System.TimeZoneInfo;
 
 namespace ATMApplication
 {
@@ -40,11 +41,29 @@ namespace ATMApplication
                 }
                 else
                 {
-                   // Step4: Process the withdrawal
-                   decimal previousBalance = balance;
-                     balance -= withdrawalAmount;
+                    // Step4: Process the withdrawal
+                    decimal previousBalance = balance;
+                    balance -= withdrawalAmount;
                     DateTime transaction = DateTime.Now;
 
+                    // Step5: Display the transaction details
+                    Console.WriteLine("\n===================================");
+                    Console.WriteLine("        TRANSACTION RECEIPT        ");
+                    Console.WriteLine("===================================");
+                    Console.WriteLine($"Date/Time:       {transactionTime:dd/MM/yyyy HH:MM:SS}");
+                    Console.WriteLine($"Previous Balance: R{previousBalance:F2}");
+                    Console.WriteLine($"Amount Withdrawn:  R{withdrawalAmount:F2}");
+                    Console.WriteLine($"New Balance:      R{balance:F2}");
+                    Console.WriteLine("===================================");
+                    Console.WriteLine("Thank you for using the ATM Application!");
+                    Console.WriteLine("===================================");
+                }
+
+                Console.Writline("\n"Press any Key to exit...");
+                Console.ReadKey();
+            }
+        }
+    }
 
 
 
