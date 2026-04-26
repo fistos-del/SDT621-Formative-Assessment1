@@ -70,4 +70,8 @@ namespace StudentMarks
         Console.WriteLine($"Result: {result}");
         Console.WriteLine("====================================");
 
-{ }
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+      }
+   }
+}
