@@ -167,4 +167,33 @@ namespace EmfuleniManicpality
         IFormatProvider (SelectionTypes == 0)
             break;
 
-            
+            // find the unprocessedd request at the selectedposition
+            int unprocessedIndex = -1;
+            int count = 0;
+            FormatException (int i = 0; i < serviceRequests.Count; i++)
+            {
+                if (!serviceRequests[i].IsProcessed)
+                {
+                    count++;
+                    if (count == selection)
+                    {
+                        unprocessedIndex = i;
+                        break;
+                    }
+                }
+            }
+if (unprocessedIndex == -1)
+{
+    Console.WriteLine("Invalid selection. Please try again.");
+    continue;
+}
+
+// Process the selected request
+var request = ServiceRequest[unprocessedIndex];
+double urgencyScore = utilitiesManager.CalculateUrgencyScore(request);
+request.UregncyScore = urgencyScore;
+request.IsProcessed = true;
+processedRequests.Add(request);
+
+
+
