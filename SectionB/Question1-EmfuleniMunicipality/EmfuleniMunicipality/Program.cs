@@ -97,7 +97,29 @@ namespace EmfuleniManicpality
                 Console.WriteLine($"         SERVICE REQUEST {i + 1} OF {requestCount}        ");
                 Console.WriteLine(("==================================================");
 
+                // Select associated resident
+                Console.WriteLine("Select the associated resident:");
+                for (int j = 0; j < residents.Count; j++)
+                {
+                    Console.WriteLine($"  {j + 1}. {residents[j].Name} (Acc: {residents[j].AccountNumber})");
+                }
 
+                Console.WriteLine("Enter resident number: ");
+                int residentIndex;
+                while (!int.TryParse(Console.ReadLine(), out residentIndex) || residentIndex < 1 || residentIndex > residents.Count)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid resident number: ");
+                }
+
+                Console.Write("Enter request type (e.g., 'Water Leak', 'Power Outage', 'Billing Issue'): ");
+                string requestType = Console.ReadLine();
+
+                // Validate priority (1-5)
+                Console.WriteLine("Enter priority level (1-5, where 1 is lowest and 5 is highest): ");
+                int priority;
+                while (!int.TryParse(Console.ReadLine(), out priority) || priority < 1 || priority > 5)
+                {
+                    Console.Write("Invalid! Enter priority between 1 and 5: ");
+                }
             }
-    }
-}
+        }
