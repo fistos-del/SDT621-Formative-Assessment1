@@ -195,5 +195,17 @@ request.UregncyScore = urgencyScore;
 request.IsProcessed = true;
 processedRequests.Add(request);
 
+// Generate and display report
+Console.Clear();
+Console.WriteLine(manager.GenerateProcessingReport(request, urgency));
+
+Console.WriteLine("Press any key to continue...");
+Console.ReadKey();
+Console.Clear();
+            }
+        }
+    }
+}
+
 
 
