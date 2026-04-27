@@ -87,9 +87,21 @@ namespace HomeAffairsDigitalIdentityProcessor
             if (!IDNumber.All(char.IsDigit))
                 return "Invalid ID: Must contain only digits.";
 
-            // Check 3: Vali
+            // Check 3: Validate month (digits 3-4, range 01-12)
+            int month = int.parse(IDNumber.Substring(2, 2));
+            if (month < 1 || month > 12)
+                return "Invalid ID: Month must be between 01 and 12.";
 
+            // Check 4: Validate day (digits 5-6, range 01-31)
+            int day = int.Parse(IDNumber.Substring(4, 2));
+            if (day < 1 || day > 31)
+                return "Invalid ID: Day must be between 01 and 31.";
+
+            // Check 5: Validate ae is reasonable
+            if (Age < 0 || Age > 150)
+                return "INVALID: Calculated age is out of valid range."
+
+            return "VALID: ID number successfully validated.";
         }
     }
-
-    }
+}
