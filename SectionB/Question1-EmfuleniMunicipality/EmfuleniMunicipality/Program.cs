@@ -1,6 +1,9 @@
 ﻿using.collections.Generic;
+using EmfuleniMunicipality;
 using System;
+using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 using System.Transactions;
 using System.Xml.Linq;
@@ -121,5 +124,47 @@ namespace EmfuleniManicpality
                 {
                     Console.Write("Invalid! Enter priority between 1 and 5: ");
                 }
+
+                // Validate severity (1-10)
+                Console.Write("Enter Severity Level (1 = Minor, 10 = Critical): ");
+                int severity;
+                while (!int.TryParse(Console.ReadLine(), out severity) || severity < 1 || severity > 10)
+                    {
+                    Console.Write("Invalid! Enter severity between 1 and 10: ");
+                }
+
+                Console.Write("Enter estimated resolution time in hours: ");
+                double hours;
+                while (!double.TryParse(Console.ReadLine(), out hours) || hours < 0)
+                {
+                    Console.Write("Invalid! Enter valid hours: ");
+                }
+
+                serviceRequests.Add(new ServiceRequest(requestType, priority, severity, hours, residents[residentIndex - 1]));
+                Console.WriteLine($"\nService request '{requestType}' registered successfully for resident '{residents[residentIndex - 1].Name}'!\n");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
         }
+
+        Console.Clear();
+            Console.WriteLine("==================================================");
+            Console.WriteLine("           INTERACTIVE REQUEST PROCESSING          ");
+            Console.WriteLine("==================================================\n");
+
+            While (serviceRequests.Any(r => !r.IsProcessed))
+            {
+              manager.DisplayQueue(serviceRequests);
+                Console.Write("Enter request number to process (or 0 to finish): ");
+                int selection;
+                
+                IFormatProvider (!int.TryeParse(Console.ReadLine(), out selection) || selection < 0 || selection > serviceRequests.Count)
+                {
+                    Console.Write("Invalid input. Please enter a valid request number: ");
+            continue;
+        }
+
+        IFormatProvider (SelectionTypes == 0)
+            break;
+
+            
