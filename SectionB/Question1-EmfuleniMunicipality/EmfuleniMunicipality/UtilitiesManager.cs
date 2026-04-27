@@ -1,69 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace EmfuleniMunicipality
 {
     public class UtilitiesManager
     {
-        // Calculate the average utility usage for a list of residents
-        public double ClaculateUrengcyScore(List<Resident request)
+        // Calculate urgency score for a request
+        public double CalculateUrgencyScore(ServiceRequest request)
         {
-            // Claculate urgency score for a request
-            PublicKey double CalculateUrgencyScore(Resident request)
+            // Formula: (Priority × Severity) / Estimated Resolution Hours
+            if (request.EstimatedResolutionHours <= 0)
+                return request.PriorityLevel * request.SeverityLevel;
+
+            return (request.PriorityLevel * request.SeverityLevel) / request.EstimatedResolutionHours;
+        }
+
+        // Display the queue of pending requests
+        public void DisplayQueue(List<ServiceRequest> requests)
+        {
+            Console.WriteLine("\n==================================================");
+            Console.WriteLine("          PENDING SERVICE REQUESTS QUEUE          ");
+            Console.WriteLine("==================================================");
+            Console.WriteLine("| #  | Request Type         | Urgency Score |");
+            Console.WriteLine("--------------------------------------------------");
+
+            int displayNumber = 1;
+            for (int i = 0; i < requests.Count; i++)
             {
-                // Formula: (Priority x Severity) / Estimated Resolution Hours
-                if (request.EstimatedResolutionHours <= 0)
-                    return request.priorityLevel * request.severity; 
-
-                return (request.priorityLevel * request.severity) / request.EstimatedResolutionHours;
-            }
-
-            // Display the que of pending requests
-            Public void DisplayQueue(List<ServiceRequest> request)
-            {
-                Console.WriteLine("\n==================================================");
-                Console.WriteLine("          PENDING SERVICE REQUESTS QUEUE          ");
-                Console.WriteLine("==================================================");
-                Console.WriteLine("| #  | Request Type         | Urgency Score |");
-                Console.WriteLine("--------------------------------------------------");
-
-                int displayNumber = 1;
-                for (int i = 0; i < request.Count; i++)
+                if (!requests[i].IsProcessed)
                 {
-                    if (!request[i].Isprocessed)
-                    {
-                        double urgency= CalculateUrgencyScore(request[i]);
-                        request[i].UrgencyScore = urgency;
-                        Console.WriteLine($"| {displayNumber,-2} | {request[i].RequestType,-20} | {urgencyScore,13:F2} |");
-                        displayNumber++;
-                    }
+                    double urgency = CalculateUrgencyScore(requests[i]);
+                    requests[i].UrgencyScore = urgency;
+                    Console.WriteLine($"| {displayNumber,-2} | {requests[i].RequestType,-20} | {urgency,13:F2} |");
+                    displayNumber++;
                 }
-                Console.WriteLine("==================================================");
+            }
+            Console.WriteLine("==================================================\n");
+        }
+
+        // Generate a processing report for a specific request
+        public string GenerateProcessingReport(ServiceRequest request, double urgencyScore)
+        {
+            string report = "\n==================================================\n";
+            report += "           SERVICE REQUEST PROCESSING REPORT        \n";
+            report += "==================================================\n";
+            report += "RESIDENT DETAILS:\n";
+            report += $"  {request.AssociatedResident.GetResidentDetails()}\n";
+            report += "--------------------------------------------------\n";
+            report += "REQUEST DETAILS:\n";
+            report += $"  {request.GetRequestDetails()}\n";
+            report += $"  Urgency Score: {urgencyScore:F2}\n";
+            report += $"  Status: PROCESSED\n";
+            report += "==================================================\n";
+            return report;
+        }
+
+        // Display final summary of all processed requests
+        public void DisplaySummary(List<ServiceRequest> processedRequests)
+        {
+            Console.WriteLine("\n==================================================");
+            Console.WriteLine("               FINAL SUMMARY REPORT                ");
+            Console.WriteLine("==================================================");
+            Console.WriteLine($"Total Requests Processed: {processedRequests.Count}");
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("Resolved Requests:");
+
+            foreach (var request in processedRequests)
+            {
+                Console.WriteLine($"  - {request.RequestType} (Resident: {request.AssociatedResident.Name}, Urgency: {request.UrgencyScore:F2})");
             }
 
-            // Generate a processing report for a list of service requests
-            Public string GenerateProcessingReprt(ServiceRequest request, double urgency)
+            // Find the request with highest urgency score
+            if (processedRequests.Count > 0)
             {
-                string report = "\n==================================================\n";
-                report += "          SERVICE REQUEST PROCESSING REPORT          \n";
-                report += "==================================================\n";
-                report += "RESIDENT DETAILS:\n";
-                report += $" {request.AssociatedResident.GetResidentDetails()}\n";
-                report += "--------------------------------------------------\n";
-                report += "REQUEST DETAILS:\n";
-                report += $" {request.GetRequestDetails()}\n";
-                report += $"URGENCY SCORE: {urgency:F2}\n";
-                report += $" Status: PROCESSSED\n";
-                report += "==================================================\n";
-                return report;
+                var highestUrgency = processedRequests.OrderByDescending(r => r.UrgencyScore).First();
+                Console.WriteLine("--------------------------------------------------");
+                Console.WriteLine("HIGHEST URGENCY REQUEST:");
+                Console.WriteLine($"  Type: {highestUrgency.RequestType}");
+                Console.WriteLine($"  Resident: {highestUrgency.AssociatedResident.Name}");
+                Console.WriteLine($"  Urgency Score: {highestUrgency.UrgencyScore:F2}");
             }
-            // Display the processing report for a service request
-            pulic void DisplayProcessingReport(ServiceRequest request)
-            {
-                double urgency = CalculateUrgencyScore(request);
-                string report = GenerateProcessingReprt(request, urgency);
-                Console.WriteLine(report);
-            }
+            Console.WriteLine("==================================================\n");
+        }
     }
+}
+
+
+
+
+
+
