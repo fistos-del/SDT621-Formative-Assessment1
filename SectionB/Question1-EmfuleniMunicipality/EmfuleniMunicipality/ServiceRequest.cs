@@ -9,7 +9,7 @@ namespace EmfuleniMunicipality
         public string RequestType { get; set; }
         public int PriorityLevel { get; set; }
         public int SeverityLevel { get; set; }
-        public double EstimatedResolutinHours { get; set; }
+        public double EstimatedResolutionHours { get; set; }
         public Resident AssociatedResident { get; set; }
         public double UrgencyScore { get; set; }
         public bool Isprocessed { get; set; }
@@ -20,7 +20,7 @@ namespace EmfuleniMunicipality
             RequestType = requestType;
             PriorityLevel = priority;
             SeverityLevel = severity;
-            EstimatedResolutinHours = resolutionHours;
+            EstimatedResolutionHours = resolutionHours;
             AssociatedResident = resident;
             UrgencyScore = 0;
             Isprocessed = false;
@@ -29,7 +29,8 @@ namespace EmfuleniMunicipality
         // Method to get equest details
         public string GetRequestDetails()
         {
-            return $"Request Type: {RequestType}, Priority Level: {PriorityLevel}, Severity Level: {SeverityLevel}, Estimated Resolution Hours: {EstimatedResolutinHours}, Urgency Score: {UrgencyScore}, Is Processed: {Isprocessed}";
+            return $"Request Type: {RequestType}, Priority Level: {PriorityLevel}, Severity Level: {SeverityLevel}, Estimated Resolution Hours: {EstimatedResolutionHours}, Urgency Score: {UrgencyScore}, Is Processed: {Isprocessed}";
         }
 }
 }
+

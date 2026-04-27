@@ -1,23 +1,16 @@
-﻿using.collections.Generic;
-using EmfuleniMunicipality;
-using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
-using System.Text.RegularExpressions;
-using System.Transactions;
-using System.Xml.Linq;
-System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace EmfuleniManicpality
+namespace EmfuleniMunicipality
 {
-    class program
+    class Program
     {
-        // Collection to store data
-        static List<Residents> residents = new List<string>();
-        static List<ServiceRequest> serviceRequests = new List<string>();
-        static List<ServiceRequest> processedRequests = new List<string>();
-        static UtilitiesManager utilitiesManager = new UtilitiesManager();
+        // Collections to store data
+        static List<Resident> residents = new List<Resident>();
+        static List<ServiceRequest> serviceRequests = new List<ServiceRequest>();
+        static List<ServiceRequest> processedRequests = new List<ServiceRequest>();
+        static UtilitiesManager manager = new UtilitiesManager();
 
         static void Main(string[] args)
         {
@@ -25,100 +18,102 @@ namespace EmfuleniManicpality
             Console.WriteLine("     EMFULENI MUNICIPALITY SERVICE MANAGER        ");
             Console.WriteLine("==================================================\n");
 
-            // Step 1: Capture residents
+            // STEP 1: Capture Residents
             CaptureResidents();
 
-            // Step 2: Capture service requests
+            // STEP 2: Capture Service Requests
             CaptureServiceRequests();
 
-            // Step 3: Process requests and display queue
+            // STEP 3: Display Queue with Urgency Scores
             manager.DisplayQueue(serviceRequests);
 
-            // Step 4&5: Interactive Processing
+            // STEP 4 & 5: Interactive Processing
             ProcessRequests();
 
-            // Step 6: Display final summary
+            // STEP 6: Final Summary
             manager.DisplaySummary(processedRequests);
 
             Console.WriteLine("Press any key to exit...");
-            Console.WriteLine();
+            Console.ReadKey();
         }
 
         static void CaptureResidents()
         {
-            Console.WriteLine("Enter the number of residents to register: ");
-            int residentsCount;
-            while (!int.TryParse(Console.ReadLine(), out residentsCount) || residentsCount <= 0)
+            Console.Write("Enter the number of residents to register: ");
+            int residentCount;
+            while (!int.TryParse(Console.ReadLine(), out residentCount) || residentCount <= 0)
             {
-                Console.WriteLine("Invalid input. Please enter a positive integer for the number of residents: ");
+                Console.Write("Invalid input! Enter a positive number: ");
             }
 
-            for (int i = 0; i < residentsCount; i++)
+            for (int i = 0; i < residentCount; i++)
             {
                 Console.Clear();
                 Console.WriteLine("==================================================");
-                Console.WriteLine($"     RESIDENT {i + 1} REGISTRATION     ");
-                Console.WriteLine("==================================================\n");
-                Console.WriteLine("Enter resident's full name: ");
+                Console.WriteLine($"           RESIDENT {i + 1} REGISTRATION           ");
+                Console.WriteLine("==================================================");
+
+                Console.Write("Enter Full Name: ");
                 string name = Console.ReadLine();
 
-                Console.WriteLine("Enter Address: ");
+                Console.Write("Enter Address: ");
                 string address = Console.ReadLine();
 
                 Console.Write("Enter Account Number: ");
-                string accountNumber = Console.ReadLine();
-                Console.WriteLine(EnterpriseServicesInteropOption Monthly Utilyty Usage(kWh): ");
+                string account = Console.ReadLine();
+
+                Console.Write("Enter Monthly Utility Usage (kWh): ");
                 double usage;
                 while (!double.TryParse(Console.ReadLine(), out usage) || usage < 0)
                 {
                     Console.Write("Invalid input! Enter a valid usage amount: ");
                 }
 
-                residents.Add(new Residents(name, address, account, usage));
+                residents.Add(new Resident(name, address, account, usage));
                 Console.WriteLine($"\nResident '{name}' registered successfully!\n");
             }
         }
 
-        static void CaptoureServiceRequests()
+        static void CaptureServiceRequests()
         {
-            Console.WriteLine();
+            Console.Clear();
             Console.WriteLine("==================================================");
-            Console.WriteLine("     SERVICE REQUEST REGISTRATION    ");
-            Console.WriteLine("==================================================\n");
+            Console.WriteLine("          SERVICE REQUEST REGISTRATION            ");
+            Console.WriteLine("==================================================");
 
-            Console.Write("Enter the number of service requests to register: ");
-            int requestsCount;
-            while (!int.TryParse(Console.ReadLine(), out requestsCount) || requestsCount <= 0)
+            Console.Write("Enter the number of service requests: ");
+            int requestCount;
+            while (!int.TryParse(Console.ReadLine(), out requestCount) || requestCount <= 0)
             {
-                Console.Write("Invalid input. Please enter a positive integer for the number of service requests: ");
+                Console.Write("Invalid input! Enter a positive number: ");
             }
 
-            for (int i = 0; i < requestsCount; i++)
+            for (int i = 0; i < requestCount; i++)
             {
                 Console.Clear();
-                Console.WriteLine("==================================================")
+                Console.WriteLine("==================================================");
                 Console.WriteLine($"         SERVICE REQUEST {i + 1} OF {requestCount}        ");
-                Console.WriteLine(("==================================================");
+                Console.WriteLine("==================================================");
 
                 // Select associated resident
-                Console.WriteLine("Select the associated resident:");
+                Console.WriteLine("Select Associated Resident:");
                 for (int j = 0; j < residents.Count; j++)
                 {
                     Console.WriteLine($"  {j + 1}. {residents[j].Name} (Acc: {residents[j].AccountNumber})");
                 }
 
-                Console.WriteLine("Enter resident number: ");
+                Console.Write("Enter resident number: ");
                 int residentIndex;
                 while (!int.TryParse(Console.ReadLine(), out residentIndex) || residentIndex < 1 || residentIndex > residents.Count)
                 {
-                    Console.WriteLine("Invalid input. Please enter a valid resident number: ");
+                    Console.Write($"Invalid! Enter a number between 1 and {residents.Count}: ");
                 }
 
-                Console.Write("Enter request type (e.g., 'Water Leak', 'Power Outage', 'Billing Issue'): ");
+                Console.Write("Enter Request Type (e.g., Water Leak, Power Outage): ");
                 string requestType = Console.ReadLine();
 
                 // Validate priority (1-5)
-                Console.WriteLine("Enter priority level (1-5, where 1 is lowest and 5 is highest): ");
+                Console.Write("Enter Priority Level (1 = Lowest, 5 = Highest): ");
                 int priority;
                 while (!int.TryParse(Console.ReadLine(), out priority) || priority < 1 || priority > 5)
                 {
@@ -129,11 +124,11 @@ namespace EmfuleniManicpality
                 Console.Write("Enter Severity Level (1 = Minor, 10 = Critical): ");
                 int severity;
                 while (!int.TryParse(Console.ReadLine(), out severity) || severity < 1 || severity > 10)
-                    {
+                {
                     Console.Write("Invalid! Enter severity between 1 and 10: ");
                 }
 
-                Console.Write("Enter estimated resolution time in hours: ");
+                Console.Write("Enter Estimated Resolution Hours: ");
                 double hours;
                 while (!double.TryParse(Console.ReadLine(), out hours) || hours < 0)
                 {
@@ -141,67 +136,72 @@ namespace EmfuleniManicpality
                 }
 
                 serviceRequests.Add(new ServiceRequest(requestType, priority, severity, hours, residents[residentIndex - 1]));
-                Console.WriteLine($"\nService request '{requestType}' registered successfully for resident '{residents[residentIndex - 1].Name}'!\n");
+                Console.WriteLine($"\nService request '{requestType}' registered!\n");
+
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
         }
 
-        Console.Clear();
+        static void ProcessRequests()
+        {
+            Console.Clear();
             Console.WriteLine("==================================================");
             Console.WriteLine("           INTERACTIVE REQUEST PROCESSING          ");
-            Console.WriteLine("==================================================\n");
+            Console.WriteLine("==================================================");
 
-            While (serviceRequests.Any(r => !r.IsProcessed))
+            while (serviceRequests.Any(r => !r.Isprocessed))
             {
-              manager.DisplayQueue(serviceRequests);
+                manager.DisplayQueue(serviceRequests);
+
                 Console.Write("Enter request number to process (or 0 to finish): ");
                 int selection;
-                
-                IFormatProvider (!int.TryeParse(Console.ReadLine(), out selection) || selection < 0 || selection > serviceRequests.Count)
-                {
-                    Console.Write("Invalid input. Please enter a valid request number: ");
-            continue;
-        }
 
-        IFormatProvider (SelectionTypes == 0)
-            break;
-
-            // find the unprocessedd request at the selectedposition
-            int unprocessedIndex = -1;
-            int count = 0;
-            FormatException (int i = 0; i < serviceRequests.Count; i++)
-            {
-                if (!serviceRequests[i].IsProcessed)
+                if (!int.TryParse(Console.ReadLine(), out selection))
                 {
-                    count++;
-                    if (count == selection)
+                    Console.WriteLine("Invalid input! Try again.");
+                    continue;
+                }
+
+                if (selection == 0)
+                    break;
+
+                // Find the unprocessed request at the selected position
+                int unprocessedIndex = -1;
+                int count = 0;
+                for (int i = 0; i < serviceRequests.Count; i++)
+                {
+                    if (!serviceRequests[i].Isprocessed)
                     {
-                        unprocessedIndex = i;
-                        break;
+                        count++;
+                        if (count == selection)
+                        {
+                            unprocessedIndex = i;
+                            break;
+                        }
                     }
                 }
-            }
-if (unprocessedIndex == -1)
-{
-    Console.WriteLine("Invalid selection. Please try again.");
-    continue;
-}
 
-// Process the selected request
-var request = ServiceRequest[unprocessedIndex];
-double urgencyScore = utilitiesManager.CalculateUrgencyScore(request);
-request.UregncyScore = urgencyScore;
-request.IsProcessed = true;
-processedRequests.Add(request);
+                if (unprocessedIndex == -1)
+                {
+                    Console.WriteLine("Invalid selection! Please try again.");
+                    continue;
+                }
 
-// Generate and display report
-Console.Clear();
-Console.WriteLine(manager.GenerateProcessingReport(request, urgency));
+                // Process the request
+                var request = serviceRequests[unprocessedIndex];
+                double urgency = manager.CalculateUrgencyScore(request);
+                request.UrgencyScore = urgency;
+                request.Isprocessed = true;
+                processedRequests.Add(request);
 
-Console.WriteLine("Press any key to continue...");
-Console.ReadKey();
-Console.Clear();
+                // Generate and display report
+                Console.Clear();
+                Console.WriteLine(manager.GenerateProcessingReport(request, urgency));
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
     }

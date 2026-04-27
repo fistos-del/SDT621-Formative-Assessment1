@@ -8,7 +8,7 @@ namespace EmfuleniMunicipality
         // Porperties
         public string Name { get; set; }
         public string Address { get; set; }
-        public string AccountNumer { get; set; }
+        public string AccountNumber { get; set; }
         public Double MonthlyUtilityUsage { get; set; }
 
         // Constructor
@@ -16,14 +16,14 @@ namespace EmfuleniMunicipality
         {
             Name = name;
             Address = address;
-            AccountNumer = accountNumber;
+            AccountNumber = accountNumber;
             MonthlyUtilityUsage = monthlyUtilityUsage;
         }
 
         // Method to get resident details as a formatted string
         public string GetResidentDetails()
         {
-            return $"Name: {Name}, Address: {Address}, Account Number: {AccountNumer}, Monthly Utility Usage: {MonthlyUtilityUsage} kWh";
+            return $"Name: {Name}, Address: {Address}, Account Number: {AccountNumber}, Monthly Utility Usage: {MonthlyUtilityUsage} kWh";
         }
     }
 }

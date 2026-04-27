@@ -28,7 +28,7 @@ namespace EmfuleniMunicipality
             int displayNumber = 1;
             for (int i = 0; i < requests.Count; i++)
             {
-                if (!requests[i].IsProcessed)
+                if (!requests[i].Isprocessed)
                 {
                     double urgency = CalculateUrgencyScore(requests[i]);
                     requests[i].UrgencyScore = urgency;
