@@ -15,3 +15,12 @@ namespace HomeAffairsDigitalIdentityProcessor
 
         private void SetupForm()
         {
+            // Set form properties
+            this.Text = "Home Affairs Digital Identity Processor";
+
+            // Set up ComboBox items
+            cmbCitizenship.Items.Clear();
+            cmbCitizenship.Items.Add("Citizen");
+            cmbCitizenship.Items.Add("Permanent Resident");
+            cmbCitizenship.Items.Add("Visitor");
+            cmbCitizenship.SelectedIndex = 0; // Default to Citizen
