@@ -1,5 +1,20 @@
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
+using System.DirectoryServices.ActiveDirectory;
+using System.Net.NetworkInformation;
+using System.Numerics;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Collections.Specialized.BitVector32;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace HomeAffairsDigitalIdentityProcessor
 {
@@ -99,3 +114,35 @@ namespace HomeAffairsDigitalIdentityProcessor
                 txtResults.Text = "ERROR: Please validate the ID first before generating a profile.";
                 return;
             }
+
+            // Get current timestamp
+            DateTime processingTime = DateTime.Now;
+
+            // Build profile summary
+            string profileSummary = "";
+            profileSummary += "==========================================\r\n";
+            profileSummary += "        DIGITAL CITIZEN PROFILE           \r\n";
+            profileSummary += "==========================================\r\n";
+            profileSummary += "\r\n";
+            profileSummary += "  PERSONAL DETAILS:\r\n";
+            profileSummary += "  ----------------------------------------\r\n";
+            profileSummary += $"  Full Name:          {currentProfile.FullName}\r\n";
+            profileSummary += $"  ID Number:          {currentProfile.IDNumber}\r\n";
+            profileSummary += $"  Age:                {currentProfile.Age} years\r\n";
+            profileSummary += $"  Citizenship Status: {currentProfile.CitizenshipStatus}\r\n";
+            profileSummary += "\r\n";
+            profileSummary += "  VALIDATION RESULT:\r\n";
+            profileSummary += "  ----------------------------------------\r\n";
+            profileSummary += $"  {currentProfile.ValidatedID()}\r\n";
+            profileSummary += "\r\n";
+            profileSummary += "  PROCESSING INFORMATION:\r\n";
+            profileSummary += "  ----------------------------------------\r\n";
+            profileSummary += $"  Profile Generated:  {processingTime:dd/MM/yyyy}\r\n";
+            profileSummary += $"  Time:               {processingTime:HH:mm:ss}\r\n";
+            profileSummary += "==========================================\r\n";
+
+            // Display the profile summary
+            txtResults.Text = profileSummary;
+        }
+    }
+}
