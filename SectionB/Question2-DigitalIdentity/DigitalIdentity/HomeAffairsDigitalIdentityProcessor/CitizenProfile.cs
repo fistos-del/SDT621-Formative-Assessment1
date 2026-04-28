@@ -39,3 +39,17 @@ namespace HomeAffairsDigitalIdentityProcessor
                 int yearShort = int.Parse(yearPart);
                 int month = int.Parse(monthPart);
                 int day = int.Parse(dayPart);
+
+                // Determine the century
+                // If the 2-digit year is > current year's last 2 digits → 1900s
+                // If the 2-digit year is ≤ current year's last 2 digits → 2000s
+                int currentYear = DateTime.Now.Year;
+                int currentYearShort = currentYear % 100;
+
+                int century;
+                if (yearShort > currentYearShort)
+                    century = 1900;  // e.g., 85 → 1985
+                else
+                    century = 2000;  // e.g., 02 → 2002
+
+                int fullYear = century + yearShort;
