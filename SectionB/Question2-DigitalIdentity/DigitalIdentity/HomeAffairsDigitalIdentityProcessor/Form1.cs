@@ -24,3 +24,14 @@ namespace HomeAffairsDigitalIdentityProcessor
             cmbCitizenship.Items.Add("Permanent Resident");
             cmbCitizenship.Items.Add("Visitor");
             cmbCitizenship.SelectedIndex = 0; // Default to Citizen
+
+            // Set up results TextBox
+            txtResults.Multiline = true;
+            txtResults.ReadOnly = true;
+            txtResults.ScrollBars = ScrollBars.Vertical;
+
+            // Styling for title
+            lblTitle.Font = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold);
+            lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblTitle.Text = "HOME AFFAIRS DIGITAL IDENTITY PROCESSOR";
+        }
