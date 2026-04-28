@@ -25,10 +25,10 @@ namespace HomeAffairsDigitalIdentityProcessor
         public Form1()
         {
             InitializeComponent();
-            SetupForm();
+            // SetupForm();
         }
 
-        private void SetupForm()
+        private void Form1_Load(object sender, EventArgs e)
         {
             // Set form properties
             this.Text = "Home Affairs Digital Identity Processor";
