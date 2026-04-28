@@ -19,3 +19,15 @@ namespace HomeAffairsDigitalIdentityProcessor
             CitizenshipStatus = citizenshipStatus;
             Age = CalculateAge(idNumber);
         }
+
+        /// <summary>
+        /// Calculates age from the first 6 digits of the ID number (YYMMDD)
+        /// </summary>
+        private int CalculateAge(string idNumber)
+        {
+            // Check if we can extract a valid date
+            if (idNumber.Length != 13 || !idNumber.All(char.IsDigit))
+                return 0;
+
+            try
+            {
