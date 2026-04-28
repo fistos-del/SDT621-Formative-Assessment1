@@ -11,3 +11,11 @@ namespace HomeAffairsDigitalIdentityProcessor
         public int Age { get; private set; }
         public string CitizenshipStatus { get; private set; }
 
+        // Constructor
+        public CitizenProfile(string fullName, string idNumber, string citizenshipStatus)
+        {
+            FullName = fullName;
+            IDNumber = idNumber;
+            CitizenshipStatus = citizenshipStatus;
+            Age = CalculateAge(idNumber);
+        }
