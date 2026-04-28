@@ -35,3 +35,22 @@ namespace HomeAffairsDigitalIdentityProcessor
             lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             lblTitle.Text = "HOME AFFAIRS DIGITAL IDENTITY PROCESSOR";
         }
+
+        /// <summary>
+        /// Validate ID Button Click - Validates the ID number
+        /// </summary>
+        private void btnValidateID_Click(object sender, EventArgs e)
+        {
+            // Validate name input
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                txtResults.Text = "ERROR: Please enter a full name.";
+                return;
+            }
+
+            // Validate ID input
+            if (string.IsNullOrWhiteSpace(txtIDNumber.Text))
+            {
+                txtResults.Text = "ERROR: Please enter an ID number.";
+                return;
+            }
