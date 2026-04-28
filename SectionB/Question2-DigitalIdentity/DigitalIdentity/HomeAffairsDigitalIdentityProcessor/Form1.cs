@@ -68,3 +68,22 @@ namespace HomeAffairsDigitalIdentityProcessor
                 txtResults.Text = "ERROR: Please select a citizenship status.";
                 return;
             }
+
+            // Create a CitizenProfile object
+            currentProfile = new CitizenProfile(
+                txtName.Text.Trim(),
+                txtIDNumber.Text.Trim(),
+                cmbCitizenship.SelectedItem.ToString()
+            );
+
+            // Display validation result
+            txtResults.Text = "====================================\r\n";
+            txtResults.Text += "        ID VALIDATION RESULT        \r\n";
+            txtResults.Text += "====================================\r\n";
+            txtResults.Text += $"Name: {currentProfile.FullName}\r\n";
+            txtResults.Text += $"ID Number: {currentProfile.IDNumber}\r\n";
+            txtResults.Text += $"Calculated Age: {currentProfile.Age} years\r\n";
+            txtResults.Text += "------------------------------------\r\n";
+            txtResults.Text += $"Result: {currentProfile.ValidatedID()}\r\n";
+            txtResults.Text += "====================================\r\n";
+        }
