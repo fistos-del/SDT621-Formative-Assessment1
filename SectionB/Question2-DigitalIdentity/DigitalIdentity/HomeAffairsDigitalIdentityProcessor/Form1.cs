@@ -54,3 +54,10 @@ namespace HomeAffairsDigitalIdentityProcessor
                 txtResults.Text = "ERROR: Please enter an ID number.";
                 return;
             }
+
+            // Validate citizenship selection
+            if (cmbCitizenship.SelectedItem == null)
+            {
+                txtResults.Text = "ERROR: Please select a citizenship status.";
+                return;
+            }
