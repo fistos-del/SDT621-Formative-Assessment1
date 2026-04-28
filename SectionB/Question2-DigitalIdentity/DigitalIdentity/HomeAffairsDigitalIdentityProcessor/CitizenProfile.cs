@@ -71,3 +71,35 @@ namespace HomeAffairsDigitalIdentityProcessor
                 return 0; // Invalid date
             }
         }
+
+        /// <summary>
+        /// Validates the ID number according to the requirements
+        /// </summary>
+        public string ValidatedID()
+        {
+            // Check 1: Must be exactly 13 digits
+            if (IDNumber.Length != 13)
+                return "INVALID: ID number must be exactly 13 digits.";
+
+            // Check 2: Must be fully numeric
+            if (!IDNumber.All(char.IsDigit))
+                return "INVALID: ID number must contain only numeric digits.";
+
+            // Check 3: Validate month (digits 3-4, range 01-12)
+            int month = int.Parse(IDNumber.Substring(2, 2));
+            if (month < 1 || month > 12)
+                return "INVALID: Month in ID number is out of range (01-12).";
+
+            // Check 4: Validate day (digits 5-6, range 01-31)
+            int day = int.Parse(IDNumber.Substring(4, 2));
+            if (day < 1 || day > 31)
+                return "INVALID: Day in ID number is out of range (01-31).";
+
+            // Check 5: Validate age is reasonable
+            if (Age < 0 || Age > 150)
+                return "INVALID: Calculated age is out of valid range.";
+
+            return "VALID: ID number successfully validated.";
+        }
+    }
+}
