@@ -53,3 +53,21 @@ namespace HomeAffairsDigitalIdentityProcessor
                     century = 2000;  // e.g., 02 → 2002
 
                 int fullYear = century + yearShort;
+
+                // Create birth date
+                DateTime birthDate = new DateTime(fullYear, month, day);
+
+                // Calculate age
+                int age = currentYear - birthDate.Year;
+
+                // Adjust if birthday hasn't occurred this year yet
+                if (DateTime.Now < birthDate.AddYears(age))
+                    age--;
+
+                return age;
+            }
+            catch
+            {
+                return 0; // Invalid date
+            }
+        }
