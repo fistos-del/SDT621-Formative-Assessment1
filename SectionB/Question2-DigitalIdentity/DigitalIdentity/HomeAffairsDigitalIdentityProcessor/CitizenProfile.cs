@@ -31,3 +31,11 @@ namespace HomeAffairsDigitalIdentityProcessor
 
             try
             {
+                // Extract date components: YYMMDD
+                string yearPart = idNumber.Substring(0, 2);
+                string monthPart = idNumber.Substring(2, 2);
+                string dayPart = idNumber.Substring(4, 2);
+
+                int yearShort = int.Parse(yearPart);
+                int month = int.Parse(monthPart);
+                int day = int.Parse(dayPart);
