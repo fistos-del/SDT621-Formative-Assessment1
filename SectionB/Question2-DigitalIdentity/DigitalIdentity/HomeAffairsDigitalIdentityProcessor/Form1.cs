@@ -87,3 +87,15 @@ namespace HomeAffairsDigitalIdentityProcessor
             txtResults.Text += $"Result: {currentProfile.ValidatedID()}\r\n";
             txtResults.Text += "====================================\r\n";
         }
+
+        /// <summary>
+        /// Generate Profile Button Click - Produces a formatted profile summary
+        /// </summary>
+        private void btnGenerateProfile_Click(object sender, EventArgs e)
+        {
+            // Check if ID has been validated first
+            if (currentProfile == null)
+            {
+                txtResults.Text = "ERROR: Please validate the ID first before generating a profile.";
+                return;
+            }
